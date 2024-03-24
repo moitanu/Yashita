@@ -8,6 +8,8 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
     /* Grid container */
@@ -16,17 +18,32 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
         grid-gap: 20px; /* Gap between grid items */
         justify-items: center; /* Center grid items horizontally */
+        align-items: center; /* Center grid items vertically */
+        border: 1px solid #ccc; /* Border for grid container */
+        padding: 10px; /* Padding to separate grid container from edges */
+        margin: 20px auto; /* Center grid container horizontally */
+        max-width: 800px; /* Maximum width of the grid container */
     }
 
     /* Individual grid item */
-    .image {
+    .image-container {
         width: 100%; /* Take up the full width of the grid cell */
-        transition: width 0.5s; /* Smooth transition effect */
+        height: 200px; /* Fixed height for each grid item */
+        position: relative; /* Positioning context for the image */
+    }
+
+    .image {
+        max-width: 100%; /* Ensure image doesn't overflow its container */
+        max-height: 100%; /* Ensure image doesn't overflow its container */
+        display: block; /* Ensure image is centered horizontally */
+        margin: auto; /* Ensure image is centered horizontally */
+        transition: transform 0.5s; /* Smooth transition effect */
         cursor: pointer; /* Change cursor to pointer on hover */
+        border: 1px solid #ccc; /* Border for grid item */
     }
 
     .image:hover {
-        width: 110%; /* Zoomed width on hover */
+        transform: scale(1.1); /* Zoom effect on hover */
     }
 
     /* Media query for mobile screens */
@@ -42,9 +59,15 @@
     <p>Click on the images to hear the corresponding letter.</p>
 
     <div class="grid-container">
-        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
-        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/ball.png" alt="Ball Image" onclick="zoomIn('B')">
-        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
+        <div class="image-container">
+            <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
+        </div>
+        <div class="image-container">
+            <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/ball.png" alt="Ball Image" onclick="zoomIn('B')">
+        </div>
+        <div class="image-container">
+            <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
+        </div>
     </div>
 
     <script>
@@ -52,29 +75,9 @@
 
         function zoomIn(letter) {
             var image = event.target;
-            image.style.width = "110%"; // Zoomed-in width
+            image.style.transform = "scale(1.1)"; // Zoomed-in effect
             
             if (!isPlaying) {
                 var audioSrc = '';
                 if (letter === 'A') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
-                } else if (letter === 'B') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
-                } else if (letter === 'C') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
-                }
-                
-                // Create an audio element
-                var audio = new Audio(audioSrc);
-                audio.play(); // Play the audio
-                isPlaying = true; // Set isPlaying to true when audio is playing
-
-                // Event listener to set isPlaying to false when audio ends
-                audio.addEventListener('ended', function() {
-                    isPlaying = false;
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+                    audioSrc = "https://github.com/moitanu/Yashita/ra
