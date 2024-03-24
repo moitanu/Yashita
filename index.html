@@ -75,7 +75,12 @@
     </div>
 
     <script>
+        var isAudioPlaying = false;
+
         function zoomImage(img) {
+            if (isAudioPlaying) return; // If audio is playing, do not allow clicking on another image
+
+            isAudioPlaying = true;
             img.classList.add('pulse-effect');
 
             var audioSrc = '';
@@ -91,6 +96,7 @@
             audio.play();
 
             audio.addEventListener('ended', function() {
+                isAudioPlaying = false;
                 img.classList.remove('pulse-effect');
             });
         }
