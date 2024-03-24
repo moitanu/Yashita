@@ -26,6 +26,7 @@
 
     /* Individual grid item */
     .image-container {
+        position: relative; /* Relative positioning for absolute positioning of image */
         width: 100%; /* Take up the full width of the grid cell */
         height: 200px; /* Fixed height for each grid item */
         display: flex; /* Use flexbox to center image vertically and horizontally */
@@ -39,7 +40,13 @@
         display: block; /* Ensure image is centered horizontally */
         margin: auto; /* Ensure image is centered horizontally */
         cursor: pointer; /* Change cursor to pointer on hover */
-        transition: transform 0.2s ease-in-out; /* Smooth transition for zoom effect */
+        transition: transform 0.5s ease, z-index 0.1s; /* Smooth transition for zoom effect and z-index */
+    }
+
+    /* Zoomed class to apply zoom effect */
+    .zoomed {
+        z-index: 1; /* Bring image to the front */
+        transform: scale(1.5); /* Scale image to 1.5 times its original size */
     }
 
     /* Media query for mobile screens */
@@ -65,44 +72,33 @@
 
     <div class="grid-container">
         <div class="image-container">
-            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
+            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/Apple.png" alt="Apple Image" onclick="zoomImage(this)">
         </div>
         <div class="image-container">
-            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/Ball.png" alt="Ball Image" onclick="zoomIn('B')">
+            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/Ball.png" alt="Ball Image" onclick="zoomImage(this)">
         </div>
         <div class="image-container">
-            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
+            <img class="image" src="https://github.com/moitanu/Yashita/raw/main/cat.png" alt="Cat Image" onclick="zoomImage(this)">
         </div>
     </div>
 
     <script>
-        var isZoomedIn = false; // Variable to track if image is zoomed in
         var currentAudio = null; // Variable to track the currently playing audio
 
-        function zoomIn(letter) {
-            var image = event.target;
+        function zoomImage(img) {
+            img.classList.add('zoomed'); // Add 'zoomed' class to trigger zoom effect
 
             // If another audio is currently playing, pause it
             if (currentAudio) {
                 currentAudio.pause();
             }
 
-            if (!isZoomedIn) {
-                // Zoom in effect
-                image.style.transform = "scale(1.1)"; // Zoom in slightly
-                isZoomedIn = true; // Set isZoomedIn to true when image is zoomed in
-            } else {
-                // Zoom out effect
-                image.style.transform = "scale(1)"; // Reset to normal size
-                isZoomedIn = false; // Set isZoomedIn to false when image is zoomed out
-            }
-
             var audioSrc = '';
-            if (letter === 'A') {
+            if (img.alt === 'Apple Image') {
                 audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
-            } else if (letter === 'B') {
+            } else if (img.alt === 'Ball Image') {
                 audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
-            } else if (letter === 'C') {
+            } else if (img.alt === 'Cat Image') {
                 audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
             }
 
@@ -113,10 +109,9 @@
             // Set the current audio to the newly created audio element
             currentAudio = audio;
 
-            // Reset image size after audio playback ends
+            // Zoom out image once audio playback ends
             audio.addEventListener('ended', function() {
-                image.style.transform = "scale(1)"; // Reset to normal size
-                isZoomedIn = false; // Set isZoomedIn to false when image is zoomed out after audio playback
+                img.classList.remove('zoomed'); // Remove 'zoomed' class to trigger zoom out effect
             });
         }
     </script>
