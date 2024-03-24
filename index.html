@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A and B</title>
+<title>A, B, and C</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -20,11 +20,12 @@
 </style>
 </head>
 <body>
-    <h1>A and B</h1>
+    <h1>A, B, and C</h1>
     <p>Click on the images to hear the corresponding letter.</p>
     
     <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
     <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/ball.png" alt="Ball Image" onclick="zoomIn('B')">
+    <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
 
     <script>
         var isPlaying = false; // Variable to track if audio is playing
@@ -39,6 +40,8 @@
                     audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
                 } else if (letter === 'B') {
                     audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
+                } else if (letter === 'C') {
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
                 }
                 
                 // Create an audio element
