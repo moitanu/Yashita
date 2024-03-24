@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A for Apple</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #apple-image {
+        width: 200px; /* Initial width of the image */
+        transition: width 0.5s; /* Smooth transition effect */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+</style>
+</head>
+<body>
+    <h1>A for Apple</h1>
+    <img id="apple-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/265px-Red_Apple.jpg" alt="Apple Image" onclick="zoomIn()">
+    <p>Click on the apple to zoom in and hear "A for Apple".</p>
 
+    <script>
+        function zoomIn() {
+            var image = document.getElementById("apple-image");
+            image.style.width = "300px"; // Zoomed-in width
+            speak("A for Apple");
+        }
+
+        function speak(text) {
+            var utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
