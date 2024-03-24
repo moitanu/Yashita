@@ -25,13 +25,23 @@
     <p>Click on the apple to zoom in and hear "A for Apple".</p>
 
     <script>
+        var isPlaying = false; // Variable to track if audio is playing
+
         function zoomIn() {
             var image = document.getElementById("apple-image");
             image.style.width = "210px"; // Zoomed-in width
             
-            // Create an audio element
-            var audio = new Audio("https://github.com/moitanu/Yashita/raw/main/apple.mp3");
-            audio.play(); // Play the audio
+            if (!isPlaying) {
+                // Create an audio element
+                var audio = new Audio("https://github.com/moitanu/Yashita/raw/main/apple.mp3");
+                audio.play(); // Play the audio
+                isPlaying = true; // Set isPlaying to true when audio is playing
+
+                // Event listener to set isPlaying to false when audio ends
+                audio.addEventListener('ended', function() {
+                    isPlaying = false;
+                });
+            }
         }
     </script>
 </body>
