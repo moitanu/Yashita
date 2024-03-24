@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phonics Sound ChartC</title>
+<title>Phonics Sound Chart</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -39,6 +39,7 @@
         display: block; /* Ensure image is centered horizontally */
         margin: auto; /* Ensure image is centered horizontally */
         cursor: pointer; /* Change cursor to pointer on hover */
+        transition: transform 0.2s ease-in-out; /* Smooth transition for zoom effect */
     }
 
     /* Media query for mobile screens */
@@ -75,32 +76,48 @@
     </div>
 
     <script>
-        var isPlaying = false; // Variable to track if audio is playing
+        var isZoomedIn = false; // Variable to track if image is zoomed in
+        var currentAudio = null; // Variable to track the currently playing audio
 
         function zoomIn(letter) {
             var image = event.target;
-            // No zoom effect
-            
-            if (!isPlaying) {
-                var audioSrc = '';
-                if (letter === 'A') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
-                } else if (letter === 'B') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
-                } else if (letter === 'C') {
-                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
-                }
-                
-                // Create an audio element
-                var audio = new Audio(audioSrc);
-                audio.play(); // Play the audio
-                isPlaying = true; // Set isPlaying to true when audio is playing
 
-                // Event listener to set isPlaying to false when audio ends
-                audio.addEventListener('ended', function() {
-                    isPlaying = false;
-                });
+            // If another audio is currently playing, pause it
+            if (currentAudio) {
+                currentAudio.pause();
             }
+
+            if (!isZoomedIn) {
+                // Zoom in effect
+                image.style.transform = "scale(1.1)"; // Zoom in slightly
+                isZoomedIn = true; // Set isZoomedIn to true when image is zoomed in
+            } else {
+                // Zoom out effect
+                image.style.transform = "scale(1)"; // Reset to normal size
+                isZoomedIn = false; // Set isZoomedIn to false when image is zoomed out
+            }
+
+            var audioSrc = '';
+            if (letter === 'A') {
+                audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
+            } else if (letter === 'B') {
+                audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
+            } else if (letter === 'C') {
+                audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
+            }
+
+            // Create an audio element
+            var audio = new Audio(audioSrc);
+            audio.play(); // Play the audio
+
+            // Set the current audio to the newly created audio element
+            currentAudio = audio;
+
+            // Reset image size after audio playback ends
+            audio.addEventListener('ended', function() {
+                image.style.transform = "scale(1)"; // Reset to normal size
+                isZoomedIn = false; // Set isZoomedIn to false when image is zoomed out after audio playback
+            });
         }
     </script>
 </body>
