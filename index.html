@@ -32,13 +32,6 @@
             // Create an audio element
             var audio = new Audio("https://github.com/moitanu/Yashita/raw/main/apple.mp3");
             audio.play(); // Play the audio
-            
-            speak("A for Apple");
-        }
-
-        function speak(text) {
-            var utterance = new SpeechSynthesisUtterance(text);
-            window.speechSynthesis.speak(utterance);
         }
     </script>
 </body>
