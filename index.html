@@ -46,7 +46,10 @@
     /* Zoomed class to apply zoom effect */
     .zoomed {
         z-index: 1; /* Bring image to the front */
-        transform: scale(1.5); /* Scale image to 1.5 times its original size */
+        transform: scale(1.5) translate(-50%, -50%); /* Scale image and translate it to center vertically and horizontally */
+        position: fixed; /* Position it fixed so it's relative to the viewport */
+        top: 50%; /* Position at the vertical center */
+        left: 50%; /* Position at the horizontal center */
     }
 
     /* Media query for mobile screens */
