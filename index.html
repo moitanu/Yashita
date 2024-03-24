@@ -9,30 +9,50 @@
         font-family: Arial, sans-serif;
         text-align: center;
     }
+
+    /* Grid container */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+        grid-gap: 20px; /* Gap between grid items */
+        justify-items: center; /* Center grid items horizontally */
+    }
+
+    /* Individual grid item */
     .image {
-        width: 200px; /* Initial width of the image */
+        width: 100%; /* Take up the full width of the grid cell */
         transition: width 0.5s; /* Smooth transition effect */
         cursor: pointer; /* Change cursor to pointer on hover */
     }
+
     .image:hover {
-        width: 220px; /* Zoomed width on hover */
+        width: 110%; /* Zoomed width on hover */
+    }
+
+    /* Media query for mobile screens */
+    @media only screen and (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: repeat(3, 1fr); /* Display three items in one row */
+        }
     }
 </style>
 </head>
 <body>
     <h1>A, B, and C</h1>
     <p>Click on the images to hear the corresponding letter.</p>
-    
-    <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
-    <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/ball.png" alt="Ball Image" onclick="zoomIn('B')">
-    <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
+
+    <div class="grid-container">
+        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
+        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/ball.png" alt="Ball Image" onclick="zoomIn('B')">
+        <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/cat.png" alt="Cat Image" onclick="zoomIn('C')">
+    </div>
 
     <script>
         var isPlaying = false; // Variable to track if audio is playing
 
         function zoomIn(letter) {
             var image = event.target;
-            image.style.width = "210px"; // Zoomed-in width
+            image.style.width = "110%"; // Zoomed-in width
             
             if (!isPlaying) {
                 var audioSrc = '';
