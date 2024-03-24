@@ -29,7 +29,9 @@
     .image-container {
         width: 100%; /* Take up the full width of the grid cell */
         height: 200px; /* Fixed height for each grid item */
-        position: relative; /* Positioning context for the image */
+        display: flex; /* Use flexbox to center image vertically and horizontally */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
     }
 
     .image {
@@ -45,6 +47,9 @@
     @media only screen and (max-width: 768px) {
         .grid-container {
             grid-template-columns: repeat(3, 1fr); /* Display three items in one row */
+        }
+        .image-container {
+            height: auto; /* Allow height to adjust to fit image */
         }
     }
 
