@@ -28,6 +28,11 @@
         function zoomIn() {
             var image = document.getElementById("apple-image");
             image.style.width = "210px"; // Zoomed-in width
+            
+            // Create an audio element
+            var audio = new Audio("https://github.com/moitanu/Yashita/raw/main/apple.mp3");
+            audio.play(); // Play the audio
+            
             speak("A for Apple");
         }
 
