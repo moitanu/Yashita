@@ -37,6 +37,19 @@
             transform: scale(1.05);
         }
 
+        .pulse-effect {
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
         h1 {
             font-size: 32px;
             color: #333;
@@ -62,14 +75,8 @@
     </div>
 
     <script>
-        var currentAudio = null;
-
         function zoomImage(img) {
-            img.classList.add('zoomed');
-
-            if (currentAudio) {
-                currentAudio.pause();
-            }
+            img.classList.add('pulse-effect');
 
             var audioSrc = '';
             if (img.alt === 'Apple Image') {
@@ -83,10 +90,8 @@
             var audio = new Audio(audioSrc);
             audio.play();
 
-            currentAudio = audio;
-
             audio.addEventListener('ended', function() {
-                img.classList.remove('zoomed');
+                img.classList.remove('pulse-effect');
             });
         }
     </script>
