@@ -14,6 +14,9 @@
         transition: width 0.5s; /* Smooth transition effect */
         cursor: pointer; /* Change cursor to pointer on hover */
     }
+    #apple-image:hover {
+        width: 220px; /* Zoomed width on hover */
+    }
 </style>
 </head>
 <body>
@@ -24,7 +27,7 @@
     <script>
         function zoomIn() {
             var image = document.getElementById("apple-image");
-            image.style.width = "300px"; // Zoomed-in width
+            image.style.width = "210px"; // Zoomed-in width
             speak("A for Apple");
         }
 
