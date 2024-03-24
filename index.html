@@ -3,37 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A for Apple</title>
+<title>A and B</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         text-align: center;
     }
-    #apple-image {
+    .image {
         width: 200px; /* Initial width of the image */
         transition: width 0.5s; /* Smooth transition effect */
         cursor: pointer; /* Change cursor to pointer on hover */
     }
-    #apple-image:hover {
+    .image:hover {
         width: 220px; /* Zoomed width on hover */
     }
 </style>
 </head>
 <body>
-    <h1>A for Apple</h1>
-    <img id="apple-image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn()">
-    <p>Click on the apple to zoom in and hear "A for Apple".</p>
+    <h1>A and B</h1>
+    <p>Click on the images to hear the corresponding letter.</p>
+    
+    <img class="image" src="https://raw.githubusercontent.com/moitanu/Yashita/main/Apple.png" alt="Apple Image" onclick="zoomIn('A')">
+    <img class="image" src="https://pngimg.com/uploads/football/football_PNG52796.png" alt="Ball Image" onclick="zoomIn('B')">
 
     <script>
         var isPlaying = false; // Variable to track if audio is playing
 
-        function zoomIn() {
-            var image = document.getElementById("apple-image");
+        function zoomIn(letter) {
+            var image = event.target;
             image.style.width = "210px"; // Zoomed-in width
             
             if (!isPlaying) {
+                var audioSrc = '';
+                if (letter === 'A') {
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
+                } else if (letter === 'B') {
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
+                }
+                
                 // Create an audio element
-                var audio = new Audio("https://github.com/moitanu/Yashita/raw/main/apple.mp3");
+                var audio = new Audio(audioSrc);
                 audio.play(); // Play the audio
                 isPlaying = true; // Set isPlaying to true when audio is playing
 
