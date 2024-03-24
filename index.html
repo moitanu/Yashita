@@ -37,13 +37,8 @@
         max-height: 100%; /* Ensure image doesn't overflow its container */
         display: block; /* Ensure image is centered horizontally */
         margin: auto; /* Ensure image is centered horizontally */
-        transition: transform 0.5s; /* Smooth transition effect */
         cursor: pointer; /* Change cursor to pointer on hover */
         border: 1px solid #ccc; /* Border for grid item */
-    }
-
-    .image:hover {
-        transform: scale(1.1); /* Zoom effect on hover */
     }
 
     /* Media query for mobile screens */
@@ -75,9 +70,29 @@
 
         function zoomIn(letter) {
             var image = event.target;
-            image.style.transform = "scale(1.1)"; // Zoomed-in effect
+            // No zoom effect
             
             if (!isPlaying) {
                 var audioSrc = '';
                 if (letter === 'A') {
-                    audioSrc = "https://github.com/moitanu/Yashita/ra
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/apple.mp3";
+                } else if (letter === 'B') {
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/ball.mp3";
+                } else if (letter === 'C') {
+                    audioSrc = "https://github.com/moitanu/Yashita/raw/main/cat.mp3";
+                }
+                
+                // Create an audio element
+                var audio = new Audio(audioSrc);
+                audio.play(); // Play the audio
+                isPlaying = true; // Set isPlaying to true when audio is playing
+
+                // Event listener to set isPlaying to false when audio ends
+                audio.addEventListener('ended', function() {
+                    isPlaying = false;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
